@@ -12,7 +12,7 @@ const Generator = require('./Generator');
 function activate(context) {
 	const generator = new Generator;
 
-	let disposable = vscode.commands.registerCommand('php-docblock-generator.createDocBlock', async function () {
+	let disposable = vscode.commands.registerCommand('php-docblock-generator.createDocBlock', async () => {
 		await generator.createDocBlock()
 	});
 

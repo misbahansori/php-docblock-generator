@@ -1,4 +1,4 @@
-const util = require('../utils');
+const util = require('../util');
 let Resolver = require('../resolver/Resolver');
 /**
  * @param {string} selectedText

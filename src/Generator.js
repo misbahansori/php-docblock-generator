@@ -1,17 +1,27 @@
 const vscode = require('vscode');
 const variable = require('./signature/variable');
+const method = require('./signature/method');
+const property = require('./signature/property');
+const classx = require('./signature/class');
 
 class Generator {
   async createDocBlock() {
     const lang = vscode.window.activeTextEditor.document.languageId;
+
     if (lang == "php") {
       let selection = vscode.window.activeTextEditor.selection;
       let startLine = selection.start.line;
       let selectedText = vscode.window.activeTextEditor.document.lineAt(startLine).text;
 
       let textToInsert = '';
-      if (/\$([\w_-]+)/.exec(selectedText) != null) {
-        textToInsert = await variable.comment(selectedText);
+     if (/function\s+([\w_-]+)/.exec(selectedText) != null) {
+          textToInsert = method.comment(selectedText);
+      } else if (/(public|private|protected|var)\s+\$([\w_-]+)/.exec(selectedText) != null) {
+          textToInsert = property.comment(selectedText);
+      } else if (/(class)\s+([\w_-]+)/.exec(selectedText) != null) {
+          textToInsert = classx.comment(selectedText);
+      } else if (/\$([\w_-]+)/.exec(selectedText) != null) {
+          textToInsert = await variable.comment(selectedText);
       } else {
         vscode.window.showInformationMessage('Please select a PHP signature');
         return;
