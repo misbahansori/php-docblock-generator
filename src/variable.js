@@ -1,12 +1,12 @@
 const util = require('./util');
-
+let Resolver = require('./Resolver');
 /**
  * @param {string} selectedText
  */
-function comment(selectedText) {
+async function comment(selectedText) {
     selectedText = util.stripComments(selectedText);
     const varName = getVarName(selectedText);
-    const type = getType(selectedText);
+    const type = await getType(selectedText);
     return getComment(varName, type);
 }
 
@@ -23,14 +23,18 @@ function getVarName(selectedText) {
 /**
  * @param {string} selectedText
  */
-function getType(selectedText) {
+async function getType(selectedText) {
     let type = 'mixed';
     const parts = /=\s?(.+)::/.exec(selectedText);
     if (parts != null) {
         type = parts[1].replace(/[\r\n;,]$/, '');
+        const resolver = new Resolver();
+        let files = await resolver.findFiles(type);
+        let namespaces = await resolver.findNamespaces(type, files);
+        let fqcn = await resolver.pickClass(namespaces);
+        type = `\\${fqcn}`
     }
-
-    console.log({parts, type})
+    console.log(type)
 
     return type;
 }
