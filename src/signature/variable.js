@@ -1,5 +1,5 @@
-const util = require('./util');
-let Resolver = require('./Resolver');
+const util = require('../utils');
+let Resolver = require('../resolver/Resolver');
 /**
  * @param {string} selectedText
  */
