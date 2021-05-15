@@ -20,6 +20,14 @@
         "command": "php-docblock-generator.createDocBlock",
         "title": "Create DocBlock"
       }
+    ],
+    "keybindings": [
+      {
+          "command": "php-docblock-generator.createDocBlock",
+          "key": "ctrl+shift+c",
+          "mac": "cmd+shift+c",
+          "when": "editorTextFocus"
+      }
     ]
   },
   "scripts": {
