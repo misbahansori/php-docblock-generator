@@ -2,6 +2,7 @@
   "name": "php-docblock-generator",
   "displayName": "php-docblock-generator",
   "description": "Generate php docblock",
+  "publisher": "misbahansori",
   "version": "0.0.1",
   "engines": {
     "vscode": "^1.56.0"
