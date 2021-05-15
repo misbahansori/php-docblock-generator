@@ -48,5 +48,9 @@
   },
   "dependencies": {
     "node-natural-sort": "^0.8.7"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/misbahansori/php-docblock-generator.git"
   }
 }
